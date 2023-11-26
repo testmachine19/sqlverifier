@@ -1,0 +1,124 @@
+{
+	"id": "0e97438d-7fdf-4b0d-93ff-124052da8724",
+	"name": "sqlverifier",
+	"timestamp": "2023-11-26T22:07:26.967Z",
+	"collection_id": "24624515-7ec25de7-ea00-408c-b6a9-f01a885a2505",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 6,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-11-26T22:07:25.878Z",
+	"totalFail": 6,
+	"results": [
+		{
+			"id": "71ee1826-db98-414e-bfe5-e3aecb2c1b98",
+			"name": "api/authenticate",
+			"url": "http://localhost:8080/api/authenticate",
+			"time": 100,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 6,
+					"fail": 0
+				}
+			},
+			"times": [
+				121,
+				95,
+				132,
+				102,
+				97,
+				100
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "b44b672b-71d7-4c9e-b8a2-9e7e804af3f5",
+			"name": "create tasks from postman",
+			"url": "http://localhost:8080/api/tasks",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Successful POST request": false
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 0,
+					"fail": 6
+				}
+			},
+			"times": [
+				16,
+				8,
+				14,
+				8,
+				8,
+				8
+			],
+			"allTests": [
+				{
+					"Successful POST request": false
+				},
+				{
+					"Successful POST request": false
+				},
+				{
+					"Successful POST request": false
+				},
+				{
+					"Successful POST request": false
+				},
+				{
+					"Successful POST request": false
+				},
+				{
+					"Successful POST request": false
+				}
+			]
+		}
+	],
+	"count": 6,
+	"totalTime": 709,
+	"collection": {
+		"requests": [
+			{
+				"id": "71ee1826-db98-414e-bfe5-e3aecb2c1b98",
+				"method": "POST"
+			},
+			{
+				"id": "b44b672b-71d7-4c9e-b8a2-9e7e804af3f5",
+				"method": "POST"
+			}
+		]
+	}
+}
