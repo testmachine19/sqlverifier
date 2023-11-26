@@ -1,0 +1,738 @@
+{
+	"info": {
+		"_postman_id": "7ec25de7-ea00-408c-b6a9-f01a885a2505",
+		"name": "sqlverifier",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24624515"
+	},
+	"item": [
+		{
+			"name": "api/authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDU1OTcwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDA0NzMzMDJ9.PPnryBP7smPfACCwS20q6I3Nwh1ZwcZDB4noDBk2Z0qMEYDY8XatKmi-s5MqvvtIRtdAOWzSNEfU8qyWVNVY4Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin\",\n  \"rememberMe\": true\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/authenticate",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDMyMDc0NCwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDAyMzQzNDR9.9D0oDyb0SKVVCLptslx0Gd2R4wFgMdF96KBwdRz5qOxifsiXfs5gEG_3fA0A_idrO1G1r4X6tQK-quHlmGuLoQ"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/admin/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "20",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDMyMDc0NCwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDAyMzQzNDR9.9D0oDyb0SKVVCLptslx0Gd2R4wFgMdF96KBwdRz5qOxifsiXfs5gEG_3fA0A_idrO1G1r4X6tQK-quHlmGuLoQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 0,\n  \"login\": \"{{login}}\",\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"email\": \"{{email}}\",\n  \"imageUrl\": \"\",\n  \"activated\": true,\n  \"langKey\": \"en\",\n  \"createdBy\": \"string\",\n  \"createdDate\": \"2023-11-17T15:28:20.041Z\",\n  \"lastModifiedBy\": \"string\",\n  \"lastModifiedDate\": \"2023-11-17T15:28:20.041Z\",\n  \"authorities\": [\n    \"string\"\n  ],\n  \"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/register",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get public users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"const response = pm.response.json()",
+							"const isFirst = response.filter((student) => student.login === \"first_student\")",
+							"",
+							"console.log(isFirst[0].id)",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDMyMDc0NCwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDAyMzQzNDR9.9D0oDyb0SKVVCLptslx0Gd2R4wFgMdF96KBwdRz5qOxifsiXfs5gEG_3fA0A_idrO1G1r4X6tQK-quHlmGuLoQ"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "20",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change user's settings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDU1OTcwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDA0NzMzMDJ9.PPnryBP7smPfACCwS20q6I3Nwh1ZwcZDB4noDBk2Z0qMEYDY8XatKmi-s5MqvvtIRtdAOWzSNEfU8qyWVNVY4Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 1101,\n        \"login\": \"second_student\",\n        \"firstName\": \"Lin\",\n        \"lastName\": \"Lenn\",\n        \"email\": \"moriarty@gmail.com\",\n        \"imageUrl\": \"\",\n        \"activated\": true,\n        \"langKey\": \"en\",\n        \"createdBy\": \"admin\",\n        \"createdDate\": \"2023-11-20T09:56:20.600878Z\",\n        \"lastModifiedBy\": \"admin\",\n        \"lastModifiedDate\": \"2023-11-20T09:56:42.815121Z\",\n        \"authorities\": [\n            \"ROLE_USER_STUDENT\"\n        ]\n    }"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/admin/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*",
+						"disabled": true
+					},
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDU1OTcwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDA0NzMzMDJ9.PPnryBP7smPfACCwS20q6I3Nwh1ZwcZDB4noDBk2Z0qMEYDY8XatKmi-s5MqvvtIRtdAOWzSNEfU8qyWVNVY4Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Login\": \"second_student\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/admin/users/second_student",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"users",
+						"second_student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json()",
+							"const isSolved = response.filter((check) => check.isSolved === true)",
+							"",
+							"console.log(isSolved[0].id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMTA5NzI3MSwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDEwMTA4NzF9.9BgWdL3gjW6gNU3_N4sWslkBCPOBNeKXMSclq6DRYsZE8a-fE5NyPwMqFGDlritMR6HmVeVALJOFLdd8UKDyeQ"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/user-tasks?page=0&size=20",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user-tasks"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users tasks by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMTExMzU3NywiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDEwMjcxNzd9.QEZvZXlrMCa52yjTUHxZQIP2gjxnZ6SZux7f50lXhPpeok_qTl7wEgdVAFu0P3YQBsoywUrbQvb-oKAK9aM2BA"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/user-tasks/1203",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user-tasks",
+						"1203"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get task with id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDU1OTcwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDA0NzMzMDJ9.PPnryBP7smPfACCwS20q6I3Nwh1ZwcZDB4noDBk2Z0qMEYDY8XatKmi-s5MqvvtIRtdAOWzSNEfU8qyWVNVY4Q"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/tasks/1251",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"1251"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change task by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMDU1OTcwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDA0NzMzMDJ9.PPnryBP7smPfACCwS20q6I3Nwh1ZwcZDB4noDBk2Z0qMEYDY8XatKmi-s5MqvvtIRtdAOWzSNEfU8qyWVNVY4Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1151,\n  \"text\": \"How are you going?\",\n  \"answer\": \"43\",\n  \"title\": \"Gloryfly\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/tasks/1151",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"1151"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create tasks from postman",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMTA5NzI3MSwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDEwMTA4NzF9.9BgWdL3gjW6gNU3_N4sWslkBCPOBNeKXMSclq6DRYsZE8a-fE5NyPwMqFGDlritMR6HmVeVALJOFLdd8UKDyeQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1255,\n  \"text\": \"NO\",\n  \"answer\": \"Is -7 equal to 7?\",\n  \"title\": \"NewMath\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/tasks",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change user task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMTExMzU3NywiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDEwMjcxNzd9.QEZvZXlrMCa52yjTUHxZQIP2gjxnZ6SZux7f50lXhPpeok_qTl7wEgdVAFu0P3YQBsoywUrbQvb-oKAK9aM2BA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1204,\n  \"isSolved\": true,\n  \"user\": {\n    \"id\": 1107,\n    \"login\": \"four_student\",\n    \"firstName\": \"Austin\",\n    \"lastName\": \"Blake\",\n    \"email\": \"blake@gmail.com\",\n    \"activated\": true,\n    \"langKey\": \"en\",\n    \"imageUrl\": \"string\",\n    \"resetDate\": \"2023-11-26T19:33:59.031Z\"\n  },\n  \"task\": {\n    \"id\": 1251,\n    \"text\": \"Solve 2+2\",\n    \"answer\": \"4\",\n    \"title\": \"Math\"\n  }\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/user-tasks/1201",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user-tasks",
+						"1201"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwMTExMzU3NywiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDEwMjcxNzd9.QEZvZXlrMCa52yjTUHxZQIP2gjxnZ6SZux7f50lXhPpeok_qTl7wEgdVAFu0P3YQBsoywUrbQvb-oKAK9aM2BA"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/user-tasks/1151",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user-tasks",
+						"1151"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
